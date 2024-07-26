@@ -1,0 +1,82 @@
+<main class="main">
+  <mat-toolbar>
+    <span>People Register</span>
+  </mat-toolbar>
+
+  <div *ngIf="!people.length">Opssss!!! Dont have people for show.</div>
+
+  <mat-card *ngIf="people.length" style="margin-left: 0.5rem; margin-right: 0.5rem; flex: 1; justify-content: center; align-items: center; margin-top: 1rem;">
+    <mat-card-content style="width: 95%;">
+      <table mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        </ng-container>
+         
+
+        <ng-container matColumnDef="birthdate">
+          <th mat-header-cell *matHeaderCellDef>Birthdate</th>
+          <td mat-cell *matCellDef="let element">{{ element.birthdate }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="cpf">
+          <th mat-header-cell *matHeaderCellDef>CPF</th>
+          <td mat-cell *matCellDef="let element">{{ element.cpf }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="gender">
+           
+
+          <th mat-header-cell *matHeaderCellDef>Gender</th>
+          <td mat-cell *matCellDef="let element">{{ element.gender }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="height">
+          <th mat-header-cell *matHeaderCellDef>  Height (m)</th>
+          <td mat-cell *matCellDef="let element">{{ element.height }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="weight">
+          <th mat-header-cell *matHeaderCellDef>  Weight (kg)</th>
+          <td mat-cell *matCellDef="let element">{{ element.weight }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>  Actions</th>
+          <td mat-cell *matCellDef="let element">
+            <button (click)="rowSelected(element)" mat-icon-button>
+              <mat-icon>edit</mat-icon>
+            </button>
+
+            <button (click)="showPersonCalc(element.id)">
+              <mat-icon>person</mat-icon>
+            </button>
+
+            <button mat-icon-button>
+              <mat-icon (click)="delete(element.id)">delete</mat-icon>
+            </button>
+
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+
+
+
+  <section style="float: inline-end; margin-top: 1rem; margin-right: 1rem;">
+    <div class="example-button-row">
+      <div class="example-flex-container">
+        <div class="example-button-container">
+          <button (click)="openDialog()" mat-fab>
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
